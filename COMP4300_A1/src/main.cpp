@@ -1,37 +1,46 @@
-// Adam Flett
+#include <imgui.h>
+#include <imgui-SFML.h>
 
 #include <SFML/Graphics.hpp>
 
 int main(int argc, char* argv[])
 {
-	// Create the main window
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+	ImGui::SFML::Init(window);
 
-	// Create a graphical text to display
+
 	sf::Font font;
 	if (!font.loadFromFile("fonts/tech.ttf"))
+	{
 		return EXIT_FAILURE;
+	}
+
 	sf::Text text("Hello SFML", font, 50);
 
-	// Start the game loop
+	sf::Clock deltaClock;
 	while (window.isOpen())
 	{
-		// Process events
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			// Close window: exit
+			ImGui::SFML::ProcessEvent(window, event);
 			if (event.type == sf::Event::Closed)
+			{
 				window.close();
+			}
 		}
 
-		// Clear screen
+		ImGui::SFML::Update(window, deltaClock.restart());
+
+		ImGui::ShowDemoWindow();
+
+		ImGui::Begin("Hello, world!");
+		ImGui::Button("Look at this pretty button");
+		ImGui::End();
+
 		window.clear();
-
-		// Draw the string
 		window.draw(text);
-
-		// Update the window
+		ImGui::SFML::Render(window);
 		window.display();
 	}
 
