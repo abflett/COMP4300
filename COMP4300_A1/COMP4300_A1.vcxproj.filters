@@ -23,11 +23,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="assets\fonts\tech.ttf">
-      <Filter>Resource Files\fonts</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="assets\config.txt">
+    <CopyFileToFolders Include="config.txt">
       <Filter>Resource Files</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="fonts\tech.ttf">
+      <Filter>Resource Files\fonts</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>
